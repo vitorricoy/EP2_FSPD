@@ -45,7 +45,7 @@ message RequisicaoAtivacao {
 }
 
 message RespostaAtivacao {
-  uint64 status = 1;
+  uint64 chavesProcessadas = 1;
 }
 
 

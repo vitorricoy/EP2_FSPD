@@ -31,9 +31,9 @@ class ServerPares(ServerParesServicer):
                 resposta = stub.Registrar(RequisicaoRegistro(servico=self.endereco, listaChaves=list(self.dicionario.keys())))
                 if resposta.chavesProcessadas != len(self.dicionario):
                     raise Exception('Erro ao registrar chaves no servidor centralizador')
-                return RespostaAtivacao(status=0)
+                return RespostaAtivacao(chavesProcessadas=resposta.chavesProcessadas)
         else:
-            return RespostaAtivacao(status=0)
+            return RespostaAtivacao(chavesProcessadas=0)
 
     def Termina(self, request, context):
         self.eventoTermino.set()
