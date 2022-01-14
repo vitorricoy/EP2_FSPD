@@ -1,5 +1,6 @@
 import sys
 import grpc
+import socket
 import threading
 from concurrent import futures
 from servicos_pb2_grpc import ServerCentralizadorServicer, add_ServerCentralizadorServicer_to_server
@@ -46,14 +47,14 @@ class ServerCentralizador(ServerCentralizadorServicer):
 if __name__ == '__main__':
     # Constroi o endereço do servidor
     porta = sys.argv[1]
-    endereco = 'localhost:%s' % porta
+    endereco = '%s:%s' % socket.INADDR_ANY % porta
     # Declara um evento para indicar o término do servidor
     eventoTermino = threading.Event()
     # Declara a instância do servidor de GRPC
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     # Adiciona o servidor centralizador à instância do servidor declarada
     add_ServerCentralizadorServicer_to_server(ServerCentralizador(eventoTermino), server)
-    # Inicializa o servidor no localhost com a porta indicada por parâmetro
+    # Inicializa o servidor no seu endereço com a porta indicada por parâmetro
     server.add_insecure_port(endereco)
     # Inicia o servidor
     server.start()
