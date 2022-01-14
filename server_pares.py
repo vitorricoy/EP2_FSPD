@@ -68,7 +68,7 @@ class ServerPares(ServerParesServicer):
 if __name__ == '__main__':
     # Constroi o endereço do servidor
     porta = sys.argv[1]
-    endereco = '%s:%s' % socket.INADDR_ANY % porta
+    endereco = '%s:%s' % (socket.INADDR_ANY, porta)
     # Verifica se a flag de ativação será verdadeira ou falsa
     ativacao = False
     if len(sys.argv) > 2:
@@ -78,7 +78,7 @@ if __name__ == '__main__':
     # Declara a instância do servidor de GRPC
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     # Adiciona o servidor de pares à instância do servidor declarada
-    add_ServerParesServicer_to_server(ServerPares(ativacao, eventoTermino, '%s:%s' % socket.getfqdn() % porta), server)
+    add_ServerParesServicer_to_server(ServerPares(ativacao, eventoTermino, '%s:%s' % (socket.getfqdn(), porta)), server)
     # Inicializa o servidor no seu endereço com a porta indicada por parâmetro
     server.add_insecure_port(endereco)
     # Inicia o servidor

@@ -19,7 +19,7 @@ message RespostaMapeamento {
 
 message RequisicaoTermino {}
 
-message RespostaTermino {
+message RespostaTerminoCentralizador {
   uint64 chavesRegistradas = 1;
 }
 
@@ -28,7 +28,7 @@ message RespostaTerminoPares {
 }
 
 message RequisicaoInsercao {
-  int32 chave = 1;
+  uint64 chave = 1;
   string valor = 2;
 }
 
@@ -56,7 +56,7 @@ message RespostaAtivacao {
 service ServerCentralizador {
   rpc Registrar(RequisicaoRegistro) returns(RespostaRegistro) {}
   rpc Mapear(RequisicaoMapeamento) returns(RespostaMapeamento) {}
-  rpc Termina(RequisicaoTermino) returns(RespostaTermino) {}
+  rpc Termina(RequisicaoTermino) returns(RespostaTerminoCentralizador) {}
 }
 
 service ServerPares {

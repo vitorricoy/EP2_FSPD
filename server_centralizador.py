@@ -4,7 +4,7 @@ import socket
 import threading
 from concurrent import futures
 from servicos_pb2_grpc import ServerCentralizadorServicer, add_ServerCentralizadorServicer_to_server
-from servicos_pb2 import RespostaRegistro, RespostaMapeamento, RespostaTermino
+from servicos_pb2 import RespostaRegistro, RespostaMapeamento, RespostaTerminoCentralizador
 
 ''' Servidor centralizador responsável por registrar chaves e quais serviços contém essas chaves '''
 class ServerCentralizador(ServerCentralizadorServicer):
@@ -42,12 +42,12 @@ class ServerCentralizador(ServerCentralizadorServicer):
         # Indica que o evento de término ocorreu
         self.eventoTermino.set()
         # Retorna o número de chaves registradas no servidor
-        return RespostaTermino(chavesRegistradas=len(self.dicionario))
+        return RespostaTerminoCentralizador(chavesRegistradas=len(self.dicionario))
 
 if __name__ == '__main__':
     # Constroi o endereço do servidor
     porta = sys.argv[1]
-    endereco = '%s:%s' % socket.INADDR_ANY % porta
+    endereco = '%s:%s' % (socket.INADDR_ANY, porta)
     # Declara um evento para indicar o término do servidor
     eventoTermino = threading.Event()
     # Declara a instância do servidor de GRPC

@@ -34,7 +34,7 @@ if __name__ == '__main__':
             # Se o comando foi de ativação
             elif comandos[0] == 'A':
                 # Chama a função de ativação do servidor de pares
-                resposta = stub.Ativa(RequisicaoAtivacao())
+                resposta = stub.Ativa(RequisicaoAtivacao(servico=comandos[1]))
                 # Imprime o número de chaves processadas pela ativação
                 print(resposta.chavesProcessadas)
             # Se o comando foi de término

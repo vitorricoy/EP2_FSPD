@@ -31,11 +31,15 @@ if __name__ == '__main__':
                     # Se conecta ao serviço de pares
                     with grpc.insecure_channel(resposta.servico) as canalPares:  
                         # Declara o Stub dos servidores de pares
-                        stub = ServerParesStub(canalPares)
+                        paresStub = ServerParesStub(canalPares)
                         # Consulta pela chave no servidor de pares
-                        resposta = stub.Consulta(RequisicaoConsulta(chave=int(comandos[1])))
+                        resposta = paresStub.Consulta(RequisicaoConsulta(chave=int(comandos[1])))
                         # Imprime o numero de chaves registradas pelo servidor centralizador
-                        print(resposta.chavesRegistradas)
+                        print(resposta.resultado)
+                else:
+                    # Imprime uma linha vazia no caso da chave não estar registrada no servidor centralizador
+                    print()
+                
             # Se o comando foi de término
             elif comandos[0] == 'T':
                 # Envia o comando de término para o servidor centralizador
