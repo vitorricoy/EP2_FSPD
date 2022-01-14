@@ -27,7 +27,7 @@ if __name__ == '__main__':
                 # Se o mapeamento respondeu um serivço
                 if resposta.servico:
                     # Imprime o serviço recebido
-                    print(resposta.servico,':', end='', sep='')
+                    print(resposta.servico,':', end=' ', sep='')
                     # Se conecta ao serviço de pares
                     with grpc.insecure_channel(resposta.servico) as canalPares:  
                         # Declara o Stub dos servidores de pares
