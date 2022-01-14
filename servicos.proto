@@ -23,6 +23,10 @@ message RespostaTermino {
   uint64 chavesRegistradas = 1;
 }
 
+message RespostaTerminoPares {
+  uint64 status = 1;
+}
+
 message RequisicaoInsercao {
   int32 chave = 1;
   string valor = 2;
@@ -59,7 +63,7 @@ service ServerPares {
   rpc Insere(RequisicaoInsercao) returns(RespostaInsercao) {}
   rpc Consulta(RequisicaoConsulta) returns(RespostaConsulta) {}
   rpc Ativa(RequisicaoAtivacao) returns(RespostaAtivacao) {}
-  rpc Termina(RequisicaoTermino) returns(RespostaTermino) {}
+  rpc Termina(RequisicaoTermino) returns(RespostaTerminoPares) {}
 }
 
 

@@ -4,9 +4,7 @@ import sys
 from servicos_pb2_grpc import ServerParesStub
 from servicos_pb2 import RequisicaoInsercao, RequisicaoAtivacao, RequisicaoConsulta, RequisicaoTermino
 
-'''
-Cliente que se conecta a um servidor de pares e insere valores, faz consultas e envia ativação a ele.
-'''
+''' Cliente que se conecta a um servidor de pares e insere valores, faz consultas e envia ativação a ele. '''
 if __name__ == '__main__':
     enderecoServidor = sys.argv[1]
     # Conecta no servidor de pares

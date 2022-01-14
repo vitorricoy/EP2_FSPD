@@ -4,10 +4,8 @@ import sys
 from servicos_pb2_grpc import ServerCentralizadorStub, ServerParesStub
 from servicos_pb2 import RequisicaoMapeamento, RequisicaoTermino, RequisicaoConsulta
 
-'''
-Cliente que se conecta ao servidor centralizador e faz consultas nele 
-e nos servidores de pares retornados pelo servidor centralizador
-'''
+''' Cliente que se conecta ao servidor centralizador e faz consultas nele 
+e nos servidores de pares retornados pelo servidor centralizador '''
 if __name__ == '__main__':
     enderecoServidor = sys.argv[1]
     # Inicializa o canal de conexão entre o cliente e o servidor centralizador
@@ -36,8 +34,8 @@ if __name__ == '__main__':
                         stub = ServerParesStub(canalPares)
                         # Consulta pela chave no servidor de pares
                         resposta = stub.Consulta(RequisicaoConsulta(chave=int(comandos[1])))
-                        # Imprime o valor retornado
-                        print(resposta.resultado)
+                        # Imprime o numero de chaves registradas pelo servidor centralizador
+                        print(resposta.chavesRegistradas)
             # Se o comando foi de término
             elif comandos[0] == 'T':
                 # Envia o comando de término para o servidor centralizador
