@@ -23,7 +23,7 @@ class ServerPares(ServerParesServicer):
         # Se a chave está presente no dicionário
         if request.chave in self.dicionario:
             # Retorna um status indicando o fracasso em inserir o par chave-valor
-            return RespostaInsercao(status=1)
+            return RespostaInsercao(status=-1)
         # Senão, a insere com o valor indicado
         self.dicionario[request.chave] = request.valor
         # Retorna um status indicando sucesso
