@@ -1,8 +1,10 @@
 
 import grpc
 import sys
-from servicos_pb2_grpc import ServerCentralizadorStub, ServerParesStub
-from servicos_pb2 import RequisicaoMapeamento, RequisicaoTermino, RequisicaoConsulta
+from pares_pb2_grpc import ServerParesStub
+from pares_pb2 import RequisicaoConsulta
+from centralizador_pb2_grpc import ServerCentralizadorStub
+from centralizador_pb2 import RequisicaoMapeamento, RequisicaoTerminoCentralizador
 
 ''' Cliente que se conecta ao servidor centralizador e faz consultas nele 
 e nos servidores de pares retornados pelo servidor centralizador '''
@@ -27,7 +29,7 @@ if __name__ == '__main__':
                 # Se o mapeamento respondeu um serivço
                 if resposta.servico:
                     # Imprime o serviço recebido
-                    print(resposta.servico,':', end=' ', sep='')
+                    print(resposta.servico,':', end='', sep='')
                     # Se conecta ao serviço de pares
                     with grpc.insecure_channel(resposta.servico) as canalPares:  
                         # Declara o Stub dos servidores de pares
@@ -43,7 +45,7 @@ if __name__ == '__main__':
             # Se o comando foi de término
             elif comandos[0] == 'T':
                 # Envia o comando de término para o servidor centralizador
-                resposta = stub.Termina(RequisicaoTermino())
+                resposta = stub.Termina(RequisicaoTerminoCentralizador())
                 # Imprime a resposta recebida
                 print(resposta)
                 # Encerra o cliente

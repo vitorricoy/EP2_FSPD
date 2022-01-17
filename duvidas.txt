@@ -1,5 +1,5 @@
 O que a ativação deve responder ao cliente? 0?
 
-O que o cliente dos pares deve escrever? As respostas recebidas?
+O cliente dos pares imprime o retorno do comando T também?
 
 Posso criar apenas um arquivo .proto que defina os dois servidores?

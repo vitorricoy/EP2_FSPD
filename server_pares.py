@@ -3,8 +3,10 @@ import grpc
 import socket
 import threading
 from concurrent import futures
-from servicos_pb2_grpc import ServerCentralizadorStub, ServerParesServicer, add_ServerParesServicer_to_server
-from servicos_pb2 import RequisicaoRegistro, RespostaInsercao, RespostaAtivacao, RespostaConsulta, RespostaTerminoPares
+from pares_pb2_grpc import ServerParesServicer, add_ServerParesServicer_to_server
+from pares_pb2 import RespostaInsercao, RespostaAtivacao, RespostaConsulta, RespostaTerminoPares
+from centralizador_pb2_grpc import ServerCentralizadorStub
+from centralizador_pb2 import RequisicaoRegistro
 
 ''' Servidor de pares responsável por registrar chaves, consultar chaves e enviar seu conjunto de chaves 
 e sua indentificação a um servidor central '''

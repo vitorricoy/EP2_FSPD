@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+message RequisicaoRegistro {
+   string servico = 1;
+   repeated uint64 listaChaves = 2;
+}
+
+message RespostaRegistro {
+  uint64 chavesProcessadas = 1;
+}
+
+message RequisicaoMapeamento {
+  uint64 chave = 1;
+}
+
+message RespostaMapeamento {
+  string servico = 1;
+}
+
+message RequisicaoTerminoCentralizador {}
+
+message RespostaTerminoCentralizador {
+  uint64 chavesRegistradas = 1;
+}
+
+service ServerCentralizador {
+    rpc Registrar(RequisicaoRegistro) returns(RespostaRegistro) {}
+    rpc Mapear(RequisicaoMapeamento) returns(RespostaMapeamento) {}
+    rpc Termina(RequisicaoTerminoCentralizador) returns(RespostaTerminoCentralizador) {}
+}

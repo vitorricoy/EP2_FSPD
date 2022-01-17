@@ -1,8 +1,8 @@
 
 import grpc
 import sys
-from servicos_pb2_grpc import ServerParesStub
-from servicos_pb2 import RequisicaoInsercao, RequisicaoAtivacao, RequisicaoConsulta, RequisicaoTermino
+from pares_pb2_grpc import ServerParesStub
+from pares_pb2 import RequisicaoInsercao, RequisicaoAtivacao, RequisicaoConsulta, RequisicaoTerminoPares
 
 ''' Cliente que se conecta a um servidor de pares e insere valores, faz consultas e envia ativação a ele. '''
 if __name__ == '__main__':
@@ -40,7 +40,7 @@ if __name__ == '__main__':
             # Se o comando foi de término
             elif comandos[0] == 'T':
                 # Chama a função de terminar o servidor de pares
-                resposta = stub.Termina(RequisicaoTermino())
+                resposta = stub.Termina(RequisicaoTerminoPares())
                 # Imprime o status do comando de término
                 print(resposta.status)
                 # Encerra o cliente

@@ -15,7 +15,8 @@ run_cli_central: build_grpc
 	python3 client_centralizador.py $(arg)
 
 build_grpc:
-	python3 -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. servicos.proto
+	python3 -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. centralizador.proto
+	python3 -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. pares.proto
 
 clean: 
 	rm -f servicos_pb2.py servicos_pb2_grpc.py

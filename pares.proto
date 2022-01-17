@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+message RequisicaoTerminoPares {}
+
+message RespostaTerminoPares {
+  uint64 status = 1;
+}
+
+message RequisicaoInsercao {
+  uint64 chave = 1;
+  string valor = 2;
+}
+
+message RespostaInsercao {
+  int64 status = 1;
+}
+
+message RequisicaoConsulta {
+  uint64 chave = 1;
+}
+
+message RespostaConsulta {
+  string resultado = 1;
+}
+
+message RequisicaoAtivacao {
+  string servico = 1;
+}
+
+message RespostaAtivacao {
+  uint64 chavesProcessadas = 1;
+}
+
+service ServerPares {
+    rpc Insere(RequisicaoInsercao) returns(RespostaInsercao) {}
+    rpc Consulta(RequisicaoConsulta) returns(RespostaConsulta) {}
+    rpc Ativa(RequisicaoAtivacao) returns(RespostaAtivacao) {}
+    rpc Termina(RequisicaoTerminoPares) returns(RespostaTerminoPares) {}
+}
