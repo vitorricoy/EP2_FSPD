@@ -1,6 +1,5 @@
 
 import grpc
-from grpc_status import rpc_status
 import sys
 from pares_pb2_grpc import ServerParesStub
 from pares_pb2 import RequisicaoInsercao, RequisicaoAtivacao, RequisicaoConsulta, RequisicaoTerminoPares
@@ -12,6 +11,7 @@ if __name__ == '__main__':
     with grpc.insecure_channel(enderecoServidor) as channel:  
         # Declara o Stub do servidor de pares usado pelo cliente
         stub = ServerParesStub(channel)
+        # Possibilita o encerramento do cliente com uma mensagem de erro mais amigável, apesar de ser mais simples
         try:
             # Le linhas da entrada padrão até que um 'T' seja recebido
             while True:
@@ -50,7 +50,6 @@ if __name__ == '__main__':
                 else:
                     # Ignora mensagem invalida
                     continue
-        except grpc.RpcError as rpc_error:
-            status = rpc_status.from_call(rpc_error)
-            detalhes = status.details.join(', ')
-            raise RuntimeError('Cliente encerrado com o erro: %s' % detalhes)
+        except grpc.RpcError as erro:
+            # Imprime o status code do erro que levou o cliente a ser encerrado
+            print('Cliente encerrado com o erro: %s' % erro.code())

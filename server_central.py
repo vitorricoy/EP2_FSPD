@@ -3,8 +3,8 @@ import grpc
 import socket
 import threading
 from concurrent import futures
-from centralizador_pb2_grpc import ServerCentralizadorServicer, add_ServerCentralizadorServicer_to_server
-from centralizador_pb2 import RespostaRegistro, RespostaMapeamento, RespostaTerminoCentralizador
+from central_pb2_grpc import ServerCentralizadorServicer, add_ServerCentralizadorServicer_to_server
+from central_pb2 import RespostaRegistro, RespostaMapeamento, RespostaTerminoCentralizador
 
 ''' Servidor centralizador responsável por registrar chaves e quais serviços contém essas chaves '''
 class ServerCentralizador(ServerCentralizadorServicer):
