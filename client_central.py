@@ -49,7 +49,7 @@ if __name__ == '__main__':
                     # Envia o comando de término para o servidor centralizador
                     resposta = stub.Termina(RequisicaoTerminoCentralizador())
                     # Imprime a resposta recebida
-                    print(resposta)
+                    print(resposta.chavesRegistradas)
                     # Encerra o cliente
                     exit(0)
                 else:
