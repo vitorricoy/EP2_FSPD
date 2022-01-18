@@ -14,7 +14,7 @@ if __name__ == '__main__':
     with grpc.insecure_channel(enderecoServidor) as canalCentralizador:  
         # Declara o Stub do servidor centralizador usado pelo cliente
         stub = ServerCentralizadorStub(canalCentralizador)
-        # Possibilita o encerramento do cliente com uma mensagem de erro mais amigável, apesar de ser mais simples
+        # Possibilita o encerramento do cliente com uma mensagem de erro mais amigável, apesar de ser menos informativa
         try:
             # Le linhas da entrada padrão até que um 'T' seja recebido
             while True:

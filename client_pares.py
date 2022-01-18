@@ -11,7 +11,7 @@ if __name__ == '__main__':
     with grpc.insecure_channel(enderecoServidor) as channel:  
         # Declara o Stub do servidor de pares usado pelo cliente
         stub = ServerParesStub(channel)
-        # Possibilita o encerramento do cliente com uma mensagem de erro mais amigável, apesar de ser mais simples
+        # Possibilita o encerramento do cliente com uma mensagem de erro mais amigável, apesar de ser menos informativa
         try:
             # Le linhas da entrada padrão até que um 'T' seja recebido
             while True:
